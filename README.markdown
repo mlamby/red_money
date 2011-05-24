@@ -1,4 +1,6 @@
 Red Money Project
 =================
 
-Simple trading system
+Simple trading system.
+
+There is no code here at the moment just a placeholder.
