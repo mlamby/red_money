@@ -1,1 +1,4 @@
-# Red Money Project
+Red Money Project
+=================
+
+Simple trading system
