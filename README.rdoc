@@ -1,6 +1,8 @@
 = Red Money Project
 
-*Simple trading system*
+<b> Simple trading system </b>
+
+This project is in a very alpha stage at the moment. Most functionality is not yet implemented.
 
 == Indicator Functionality
 
