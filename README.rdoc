@@ -44,7 +44,8 @@ A portfolio is a collection of data and indicators to run over the data.
     indicator :max_10
   end
 
-To retrieve the symbol data from the data source do the following:
+To retrieve the symbol data from the data source (the default is to
+use the yahoofinance gem) do the following:
   p.update_symbol_data
 
 To run all the indicators
