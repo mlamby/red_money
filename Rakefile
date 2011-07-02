@@ -1,3 +1,7 @@
+# 
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+ 
 require 'rubygems'
 require 'rake'
 require 'rake/clean'
@@ -8,7 +12,7 @@ require 'rake/testtask'
 APP_BASE = File.dirname(File.expand_path(__FILE__))
 
 spec = Gem::Specification.new do |s|
-  s.name = 'red_money'
+  s.name = 'RedTrader'
   s.version = '0.0.1'
   s.has_rdoc = true
   s.extra_rdoc_files = ['README', 'LICENSE']
@@ -32,11 +36,13 @@ Rake::RDocTask.new do |rdoc|
   files =['README', 'LICENSE', 'lib/**/*.rb']
   rdoc.rdoc_files.add(files)
   rdoc.main = "README" # page to start on
-  rdoc.title = "Red Money Docs"
+  rdoc.title = "RedTrader Docs"
   rdoc.rdoc_dir = 'doc/rdoc' # rdoc output folder
   rdoc.options << '--line-numbers'
 end
 
 Rake::TestTask.new do |t|
+  t.libs << 'lib' << 'test' << 'examples'
   t.test_files = FileList['test/**/*.rb']
+  t.verbose = false
 end
