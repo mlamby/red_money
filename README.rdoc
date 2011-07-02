@@ -10,7 +10,7 @@ The indicator module provides methods for performing indicator
 calculations, over a data set that implements the Enumerable interface.
 
   data = [1,2,3,4,5]
-  sma = Sma.new(3) # Create a Sma of length 3
+  sma = Sma.new(:test, 3) # Create a Sma of length 3 with name 'test'
   result = sma.process_array data # Calculate the result
 
 The HasIndicators mixin module also provides the ability to add indicators
