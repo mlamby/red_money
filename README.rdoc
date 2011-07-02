@@ -1,5 +1,4 @@
 = Red Money Project
-
-== Simple trading system
+<b> Simple trading system </b>
 
 There is no code here at the moment just a placeholder.
