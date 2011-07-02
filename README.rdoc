@@ -30,15 +30,32 @@ The array can now be used as follows:
   result = l.run_indicator :sma_3
 
 == Portfolio Functionality
+A portfolio is a collection of data and indicators to run over the data.
 
-  tradeables = Portfolio.new do
+  p = Portfolio.new do
     name :Tradeables
 
-    symbol :NAB
-    symbol :CBA
-    symbol :WOW
+    symbol :NAB, :AX
+    symbol :CBA, :AX
+    symbol :WOW, :AX
 
     indicator :ema_13
     indicator :ema_25
     indicator :max_10
   end
+
+To retrieve the symbol data from the data source do the following:
+  p.update_symbol_data
+
+To run all the indicators
+  p.run_indicators
+
+To use the symbol data and the calculated indicators
+  puts "Date,Close,EMA_13,EMA_25,MAX_10"
+  p[:NAB].each do |bar|
+    puts "#{bar.date}, #{bar.close}, #{bar.ema_13}, #{bar.ema_25}"
+  end
+
+== Copyright
+
+Copyright (c) 2011 Michael Lamb. See LICENSE for details.

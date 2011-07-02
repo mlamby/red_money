@@ -6,6 +6,7 @@ module Examples
   # When the fast one crosses above the slow one a long entry signal is
   # triggered. When the fast one crosses below the slow one a short
   # entry signal is generated.
+  # TODO: Add a re-usable crossing detector.
   class CrossOverEntry < RedMoney::SystemBase
     parameter :fast_period, 9
     parameter :slow_period, 13
