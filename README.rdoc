@@ -9,36 +9,36 @@ This project is in a very alpha stage at the moment. Most functionality is not y
 The indicator module provides methods for performing indicator 
 calculations, over a data set that implements the Enumerable interface.
 
-data = [1,2,3,4,5]
-sma = Sma.new(3) # Create a Sma of length 3
-result = sma.process_array data # Calculate the result
+  data = [1,2,3,4,5]
+  sma = Sma.new(3) # Create a Sma of length 3
+  result = sma.process_array data # Calculate the result
 
 The HasIndicators mixin module also provides the ability to add indicators
 to your collection classes. The example below extends the built-in Array class:
 
-class Array
-  include HasIndicators
-end
+  class Array
+    include HasIndicators
+  end
 
 The array can now be used as follows:
 
-# Create the array
-l = [1,2,3,4,5]
-# Call the SMA indicator and pass it a argument of 3 (thus performing
-# a 3 point SMA.
-l.setup_has_indicator_mixin
-result = l.run_indicator :sma_3
+  # Create the array
+  l = [1,2,3,4,5]
+  # Call the SMA indicator and pass it a argument of 3 (thus performing
+  # a 3 point SMA.
+  l.setup_has_indicator_mixin
+  result = l.run_indicator :sma_3
 
 == Portfolio Functionality
 
-tradeables = Portfolio.new do
-  name :Tradeables
+  tradeables = Portfolio.new do
+    name :Tradeables
 
-  symbol :NAB
-  symbol :CBA
-  symbol :WOW
+    symbol :NAB
+    symbol :CBA
+    symbol :WOW
 
-  indicator :ema_13
-  indicator :ema_25
-  indicator :max_10
-end
+    indicator :ema_13
+    indicator :ema_25
+    indicator :max_10
+  end
