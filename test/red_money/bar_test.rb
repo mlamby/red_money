@@ -7,6 +7,7 @@ class BarTest < Test::Unit::TestCase
 
   def setup
     @bar = Bar.new( {
+      :symbol => :WOW,
       :open => 1.0,
       :high => 2.0,
       :low => 3.0, 
@@ -19,6 +20,7 @@ class BarTest < Test::Unit::TestCase
   def test_init
     b1 = Bar.new
     
+    assert_equal nil, b1.symbol
     assert_equal 0.0, b1.open
     assert_equal 0.0, b1.high
     assert_equal 0.0, b1.low
@@ -28,6 +30,7 @@ class BarTest < Test::Unit::TestCase
   end
   
   def test_getters
+    assert_equal :WOW, @bar.symbol
     assert_equal 1.0, @bar.open
     assert_equal 2.0, @bar.high
     assert_equal 3.0, @bar.low
@@ -37,6 +40,7 @@ class BarTest < Test::Unit::TestCase
   end
   
   def test_array_getters_and_setters
+    @bar[:symbol] = :CBA
     @bar[:open] = 10.0
     @bar[:high] = 20.0
     @bar[:low] = 30.0
@@ -44,6 +48,7 @@ class BarTest < Test::Unit::TestCase
     @bar[:volume] = 50.0
     @bar[:date] = '16th Jan 1999'
     
+    assert_equal :CBA, @bar[:symbol]
     assert_equal 10.0, @bar[:open]
     assert_equal 20.0, @bar[:high]
     assert_equal 30.0, @bar[:low]

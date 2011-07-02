@@ -2,10 +2,11 @@ require 'date'
 
 module RedMoney
   class Bar
-    attr_accessor :open, :high, :low, :close, :volume
+    attr_accessor :open, :high, :low, :close, :volume, :symbol
     attr_reader :date
     
     def initialize(args={})
+      @symbol = args[:symbol] 
       @open = args[:open] || 0.0
       @high = args[:high] || 0.0
       @low = args[:low] || 0.0
