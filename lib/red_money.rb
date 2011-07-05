@@ -5,6 +5,7 @@ require 'red_money/system_base'
 require 'red_money/position'
 require 'red_money/bar'
 require 'red_money/portfolio'
+require 'red_money/order'
 require 'red_money/execution/system_steps'
 
 require 'red_money/data_source/data_source'
