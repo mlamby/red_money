@@ -1,7 +1,12 @@
 require 'test/unit'
+require 'date'
 require 'red_money'
+require 'red_money/fixed_test_data_source'
 
 include RedMoney
+
+DataSource.register :fixed_test, FixedTestDataSource
+DataSource.set_default :fixed_test
 
 class PortfolioTest < Test::Unit::TestCase
   def setup
@@ -9,13 +14,21 @@ class PortfolioTest < Test::Unit::TestCase
       name :tradeables
       
       symbol :WOW
-      symbol :CBA
-      symbol :NAB
+      symbol :CBA, :AX
+      symbol :NAB, :AX, :fixed_test
     
       indicator :sma_13
       indicator :ema_25
       indicator :max_10
     end
+  end
+
+  def test_name
+    assert_equal :tradeables, @tradeables.name
+    @tradeables.name = :new_name
+    assert_equal :new_name, @tradeables.name
+    @tradeables.name :new_name2
+    assert_equal :new_name2, @tradeables.name
   end
   
   def test_symbols
@@ -26,6 +39,19 @@ class PortfolioTest < Test::Unit::TestCase
     assert_equal @tradeables[:WOW], []
     assert_equal @tradeables[:CBA], []
     assert_equal @tradeables[:NAB], []
+    
+    assert_equal @tradeables.symbols[:WOW][:name], :WOW
+    assert_equal @tradeables.symbols[:CBA][:name], :CBA
+    assert_equal @tradeables.symbols[:NAB][:name], :NAB
+    
+    assert_equal @tradeables.symbols[:WOW][:exchange], nil
+    assert_equal @tradeables.symbols[:CBA][:exchange], :AX
+    assert_equal @tradeables.symbols[:NAB][:exchange], :AX
+    
+    assert_equal @tradeables.symbols[:WOW][:source], :default
+    assert_equal @tradeables.symbols[:CBA][:source], :default
+    assert_equal @tradeables.symbols[:NAB][:source], :fixed_test
+
   end
 
   def test_indicators
@@ -47,6 +73,40 @@ class PortfolioTest < Test::Unit::TestCase
     @tradeables[:CBA] = bar_generator(100,2)
     @tradeables[:NAB] = bar_generator(100,3)
     @tradeables.run_indicators
+  end
+
+  def test_update_symbol_data
+    assert_equal 0, @tradeables[:WOW].count
+    assert_equal 0, @tradeables[:CBA].count
+    assert_equal 0, @tradeables[:NAB].count
+    
+    @tradeables.update_symbol_data
+
+    assert_equal 365, @tradeables[:WOW].count
+    assert_equal 365, @tradeables[:CBA].count
+    assert_equal 365, @tradeables[:NAB].count
+
+    assert_equal Date.today, @tradeables[:WOW].last.date
+    assert_equal Date.today-364, @tradeables[:WOW].first.date
+
+    @tradeables.update_symbol_data 10
+
+    assert_equal 10, @tradeables[:WOW].count
+    assert_equal 10, @tradeables[:CBA].count
+    assert_equal 10, @tradeables[:NAB].count
+
+    assert_equal Date.today, @tradeables[:WOW].last.date
+    assert_equal Date.today-9, @tradeables[:WOW].first.date
+
+    to_date = Date.parse('15/12/1983')
+    @tradeables.update_symbol_data 20, to_date
+
+    assert_equal 20, @tradeables[:WOW].count
+    assert_equal 20, @tradeables[:CBA].count
+    assert_equal 20, @tradeables[:NAB].count
+    
+    assert_equal to_date, @tradeables[:WOW].last.date
+    assert_equal to_date - 19, @tradeables[:WOW].first.date
   end
   
   def bar_generator count, multiple

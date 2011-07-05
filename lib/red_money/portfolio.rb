@@ -5,7 +5,7 @@ module RedMoney
   class Portfolio
     include Indicator::HasIndicators
     
-    attr_accessor :name, :symbols
+    attr_accessor :symbols
     
     def initialize(name = '',&block)
       @name = name     
@@ -33,7 +33,12 @@ module RedMoney
       end
     end
     
-    def name(value)
+    def name(value=nil)
+      @name = value unless value.nil?
+      @name
+    end
+
+    def name=(value)
       @name = value
     end
 

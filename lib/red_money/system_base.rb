@@ -10,11 +10,20 @@ module RedMoney
       def indicators
         @indicators ||= {}
       end
+
+      def component_name value=nil
+        @component_name = value unless value.nil?
+        @component_name ||= self.name
+      end
     end
     
     # Returns a list of indicators defined by this system 
     def indicators
       self.class.indicators
+    end
+
+    def component_name
+      self.class.component_name
     end
 
     # Add the indicators defined by this system to the given portfolio

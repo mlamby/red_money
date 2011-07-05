@@ -1,11 +1,15 @@
 module RedMoney
   # Position class
   # Example:
-  # p = Position.new # Position will default to :none
-  # To set the position to :short call p.short()
-  # To set the position to :long call p.long()
-  # To set the position to :none call p.none()
-  # Check the position call, is_long?, is_short?, is_none?
+  #   p = Position.new # Position will default to :none
+  # To set the position to :short call: 
+  #   p.short()
+  # To set the position to :long call: 
+  #   p.long()
+  # To set the position to :none call: 
+  #   p.none()
+  # Check the position, call:
+  #   p.is_long? or p.is_short? or p.is_none?
   # or call p.direction which will return one of :long, :short or :none
   class Position
       

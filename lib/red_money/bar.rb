@@ -30,9 +30,9 @@ module RedMoney
     
     # A bar can be indexed using a symbol or string.
     # The case is ignored. Example:
-    # b = Bar.new()
-    # b[:open]
-    # b["open"]
+    #   b = Bar.new()
+    #   b[:open]
+    #   b["open"]
     def [](index)
       method_name = "#{index.to_s.downcase}"
       raise KeyError.new("Unkown index: #{index}") unless respond_to? method_name
@@ -41,9 +41,9 @@ module RedMoney
     
     # A bar can be indexed using a symbol or string.
     # The case is ignored. Example:
-    # b = Bar.new()
-    # b[:open] = 100.0
-    # b["open"] = 10.0
+    #   b = Bar.new()
+    #   b[:open] = 100.0
+    #   b["open"] = 10.0
     def []=(index, value)
       method_name = "#{index.to_s.downcase}="
       raise KeyError.new("Unkown index: #{index}") unless respond_to? method_name

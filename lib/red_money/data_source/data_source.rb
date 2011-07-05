@@ -6,7 +6,7 @@ module RedMoney
     Sources = {}
 
     def self.update symbol, days, to_date
-      source = @default if symbol[:source] == :default 
+      source = symbol[:source] == :default ? @default : symbol[:source]
       raise UnkownDataSource, source unless Sources.has_key? source 
 
       symbol[:data] = Sources[source].update symbol, days, to_date

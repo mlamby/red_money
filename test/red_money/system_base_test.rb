@@ -3,7 +3,13 @@ require 'red_money'
 
 include RedMoney
 
+class EmptyBase < SystemBase
+end
+
 class Base < SystemBase
+
+  component_name :test_base
+
   parameter :slow_period, 50.0
   parameter :fast_period, 25.0
   parameter :unused
@@ -31,6 +37,12 @@ class SystemBaseTest < Test::Unit::TestCase
 
   def setup
     @base = Base.new 
+    @empty_base = EmptyBase.new
+  end
+
+  def test_name
+    assert_equal :test_base, @base.component_name
+    assert_equal "EmptyBase", @empty_base.component_name
   end
 
   def test_parameters
