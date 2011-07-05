@@ -48,5 +48,10 @@ module RedMoney
     def has_entry?
       self.respond_to? :entry
     end
+    
+    # Does this system component have an allow order method
+    def has_allow_order?
+      self.respond_to? :allow_order
+    end
   end
 end

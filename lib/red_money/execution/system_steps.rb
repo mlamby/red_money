@@ -9,5 +9,12 @@ module RedMoney
 
       position
     end
+
+    def self.step_allow_order component, folio, order
+      if component.has_allow_order?
+        component.send(:allow_order, folio, order)
+      end
+      order
+    end
   end
 end

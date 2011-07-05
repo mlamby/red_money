@@ -6,8 +6,8 @@ module RedMoney
     attr_reader :position
     
     def initialize bar, position
-      @bar = b
-      @symbol = b.symbol
+      @bar = bar
+      @symbol = bar.symbol
       @rejection_reason = nil
       @position = position
     end

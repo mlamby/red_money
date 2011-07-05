@@ -8,7 +8,9 @@ module Examples
     def allow_order folio, order
       
       # Only one position in a certain stock is allowed to be open at once
-      if folio.order.contains? order.symbol
+      # TODO: Decide if the portfolio is the best place to store open
+      # orders. Possibly create a system data object or simlar.
+      if folio.orders.contains? order.symbol
         order.reject "Position already open for #{trade.symbol}"
       end
      
