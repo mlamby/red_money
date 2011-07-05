@@ -57,6 +57,9 @@ To use the symbol data and the calculated indicators
     puts "#{bar.date}, #{bar.close}, #{bar.ema_13}, #{bar.ema_25}"
   end
 
+== Trading System
+This part of the design is still forming. See link:examples
+
 == Copyright
 
 Copyright (c) 2011 Michael Lamb. See LICENSE for details.
