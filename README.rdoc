@@ -58,7 +58,7 @@ To use the symbol data and the calculated indicators
   end
 
 == Trading System
-This part of the design is still forming. See link:examples
+This part of the design is still forming. See link:examples for my initial thoughts.
 
 == Copyright
 
