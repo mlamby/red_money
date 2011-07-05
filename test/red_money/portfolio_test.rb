@@ -1,7 +1,7 @@
 require 'test/unit'
 require 'date'
 require 'red_money'
-require 'red_money/fixed_test_data_source'
+require 'red_money/support/fixed_test_data_source'
 
 include RedMoney
 
